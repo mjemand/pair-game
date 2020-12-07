@@ -9,11 +9,13 @@
 
     const getOneCard = (icon) => {
         const div = document.createElement('div');
-        div.classList.add('col-2');
-        div.innerHTML = `<div class="front">
+        div.classList.add('card-item');
+        div.innerHTML = `<div class="card__front">
                 <i class="fas ${icon}"></i>
             </div>
-            <div class="back"></div>`;
+            <div class="card__back">
+            <img src="/img/card-back.jpg" alt="back">
+            </div>`;
         return div;
     };
 
@@ -40,8 +42,8 @@
 
     const iconArray = icons.concat(icons);
     shuffle(iconArray);
-    const row1 = document.querySelector('.card-row:first-child');
-    const row2 = document.querySelector('.card-row:nth-child(2)');
+    const row1 = document.querySelector('.card-row:nth-child(2)');
+    const row2 = document.querySelector('.card-row:nth-child(3)');
     let i = 0;
     for (const icon of iconArray) {
         i++;
@@ -49,7 +51,7 @@
         if (i < 6) {
             row1.appendChild(card);
         } else {
-            row.appendChild(card);
+            row2.appendChild(card);
         };
     };
 

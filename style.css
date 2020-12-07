@@ -1,3 +1,44 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.card-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-item {
+    align-self: center;
+    height: 170px;
+    max-width: 120px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+}
+
+.card__back {
+}
+
+.card__back img {
+    max-width: 100%;
+}
+
+
 
 .clock {
     display: flex;
