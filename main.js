@@ -48,7 +48,6 @@
         };
     };
 
-    
     let blockClicks = false;
     const cardClick = (ev) => {
         if (blockClicks) {
@@ -58,7 +57,6 @@
         ev.currentTarget.classList.toggle('flipped');
         const flippedCards = document.querySelectorAll('.card-item.flipped');
         
-            
         if (flippedCards.length > 1) {
                 blockClicks = true;
                 const to = setTimeout( () => {
@@ -99,9 +97,7 @@
         }
     }
 
-
 })();
-
 
 /*
 
@@ -132,7 +128,6 @@ if (flippedCards.length = 1) {
             }
         }
 
-
 document.querySelector('.start-stop-btn').addEventListener('click', () => {
     if (stopperIsRunning) {
         stopperIsRunning = false;
@@ -141,8 +136,6 @@ document.querySelector('.start-stop-btn').addEventListener('click', () => {
         stopperIsRunning = true;
     }
 });
-
-
 
 if (!stopperIsRunning) {
     return;
