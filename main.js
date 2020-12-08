@@ -23,20 +23,13 @@
         let currentIndex = array.length;
         let temporaryValue;
         let randomIndex;
-
-        // While there remain elements to shuffle...
         while (0 !== currentIndex) {
-
-            // Pick a remaining element...
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
-
-            // And swap it with the current element.
             temporaryValue = array[currentIndex];
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-
         return array;
     };
 
@@ -55,32 +48,90 @@
         };
     };
 
+    
+    let blockClicks = false;
+    const cardClick = (ev) => {
+        if (blockClicks) {
+            return;
+        }
+
+        ev.currentTarget.classList.toggle('flipped');
+        const flippedCards = document.querySelectorAll('.card-item.flipped');
+        
+            
+        if (flippedCards.length > 1) {
+                blockClicks = true;
+                const to = setTimeout( () => {
+                    clearTimeout(to);
+                    blockClicks = false;
+                document.querySelectorAll('.card-item').forEach( card => {
+                    card.classList.remove('flipped');
+                });
+            }, 2000);
+
+            checkPair();
+        }
+    };
+
+    const cards = document.querySelectorAll('.card-item');
+    cards.forEach( card => {
+        card.addEventListener('click', cardClick);
+    });
+
+    let points = 0;
+
+    const showPoints = (points) => {
+        document.querySelector('.user-points').textContent = points;
+    }
+
+    const checkPair = () => {
+        const firstCardIcon = document.querySelector('.card-item.flipped i');
+        if (firstCardIcon) {
+            const firstIconClass = firstCardIcon.className.split(' ');
+            const pair = document.querySelectorAll(`.card-item.flipped .${firstIconClass.pop()}`);
+            if (pair.length == 2) {
+                points++;
+                showPoints(points);
+                document.querySelectorAll(`.card-item.flipped`).forEach( 
+                    card => card.classList.add('found') 
+                );
+            }
+        }
+    }
+
+
 })();
 
 
+/*
 
+    let stopperTime = 0;
+    let stopperIsRunning = false;
 
+if (flippedCards.length = 1) {
+            if (stopperIsRunning) {
+             return;
+            } else {
+                stopperIsRunning = true;
+                const padNumbers = (num) => {
+                    return num < 10 ? `0${num}` : `${num}`;
+                };
+                
+                setInterval(() => {
+                    
+                    stopperTime++;
+                    const seconds = padNumbers(stopperTime % 60);
+                    const minutes = padNumbers(Math.floor(stopperTime / 60) % 60);
+                    const hours = padNumbers(Math.floor(stopperTime / 3600) % 60);
+                    const time = `${[hours, minutes, seconds].join(':')}`
+                    const stopperFace = document.querySelector('.stopper-face');
+                    stopperFace.textContent = time;
+                    console.log(stopperTime);
+                }, 1000);
+                return;
+            }
+        }
 
-
-
-const padNumbers = (num) => {
-    return num < 10 ? `0${num}` : `${num}`;
-};
-
-let stopperTime = 0;
-let stopperIsRunning = false;
-setInterval(() => {
-    if (!stopperIsRunning) {
-        return;
-    };
-    stopperTime++;
-    const seconds = padNumbers(stopperTime % 60);
-    const minutes = padNumbers(Math.floor(stopperTime / 60) % 60);
-    const hours = padNumbers(Math.floor(stopperTime / 3600) % 60);
-    const time = `${[hours, minutes, seconds].join(':')}`
-    const stopperFace = document.querySelector('.stopper-face');
-    stopperFace.textContent = time;
-}, 1000);
 
 document.querySelector('.start-stop-btn').addEventListener('click', () => {
     if (stopperIsRunning) {
@@ -92,3 +143,7 @@ document.querySelector('.start-stop-btn').addEventListener('click', () => {
 });
 
 
+
+if (!stopperIsRunning) {
+    return;
+}; */

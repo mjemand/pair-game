@@ -4,9 +4,10 @@ body {
     justify-content: center;
 }
 
-
 .container {
+    background-color: cadetblue;
     display: flex;
+    max-width: 500px;
     flex-direction: column;
     justify-content: center;
 }
@@ -28,16 +29,53 @@ body {
     padding: 0;
     background-color: transparent;
     border: none;
+    transition: transform 0.3s;
+    transform-style: preserve-3d;
+}
 
+.card__front, .card__back {
+    backface-visibility: hidden;
 }
 
 .card__back {
+    display: flex;
+    transform: rotateY(0deg);
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+.card__front {
+    display: flex;
+    transform: rotateY(180deg);
+    justify-content: center;
+    align-items: center;
+}
+
+.card__front i {
+    font-size: 75px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-item.flipped {
+    transform: rotateY(180deg);
+    justify-content: center;
+    align-items: center;
+}
+
+.card-item.found {
+    transform: rotateY(180deg);
 }
 
 .card__back img {
     max-width: 100%;
+    justify-content: center;
+    align-items: center;
 }
-
 
 
 .clock {
